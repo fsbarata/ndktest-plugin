@@ -13,6 +13,7 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 group = 'me.barata.gradle'
 version = '1.0.0'
@@ -30,38 +31,34 @@ publishing {
 			version '1.0.0'
 			from components.java
 
-//			pom.withXml {
-//				asNode().children().last() + {
-//					resolveStrategy = Closure.DELEGATE_FIRST
-//					name 'ndktest-plugin'
-//					description 'Compile and run ndk C++ tests on Android devices'
-//					url projectUrl
-//					scm {
-//						url scmUrl
-//						connection connectionUrl
-//						developerConnection developerConnectionUrl
-//					}
-//					licenses {
-//						license {
-//							name 'The Apache Software License, Version 2.0'
-//							url 'http://www.apache.org/license/LICENSE-2.0.txt'
-//							distribution 'repo'
-//						}
-//					}
-//					developers {
-//						developer {
-//							id 'your id or nick name'
-//							name 'Your Name'
-//							email 'your@mail.address'
-//						}
-//					}
-//				}
-//			}
+			pom.withXml {
+				asNode().children().last() + {
+					resolveStrategy = Closure.DELEGATE_FIRST
+					name 'ndktest-plugin'
+					description 'Run ndk C++ tests on Android devices'
+					url 'https://github.com/fsbarata/ndktest-plugin'
+					scm {
+						url 'https://github.com/fsbarata/ndktest-plugin'
+						connection 'scm:git:git://github.com/fsbarata/ndktest-plugin.git'
+						developerConnection 'scm:git:git@github.com:fsbarata/ndktest-plugin.git'
+					}
+					licenses {
+						license {
+							name 'The Apache Software License, Version 2.0'
+							url 'http://www.apache.org/license/LICENSE-2.0.txt'
+						}
+					}
+					developers {
+						developer {
+							id 'fsbarata'
+							name 'Fabio Barata'
+							email 'refrainstudios@gmail.com'
+							url 'https://github.com/fsbarata'
+						}
+					}
+				}
+			}
 		}
-	}
-
-	repositories {
-		mavenLocal()
 	}
 }
 
