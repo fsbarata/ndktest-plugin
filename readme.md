@@ -62,6 +62,3 @@ ndktest {
 2. Create a gradle task Android studio run configuration
 3. Disable jniDebuggable for faster builds and runs
 
-### Contact ###
-
-This gradle plugin was made by Fabio Barata. Contact me anytime.
