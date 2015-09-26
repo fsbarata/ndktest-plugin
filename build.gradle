@@ -1,0 +1,86 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+
+	dependencies {
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+
+group = 'me.barata.gradle'
+version = '1.0.0'
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId 'me.barata.gradle'
+			artifactId 'ndktest-plugin'
+			version '1.0.0'
+			from components.java
+
+//			pom.withXml {
+//				asNode().children().last() + {
+//					resolveStrategy = Closure.DELEGATE_FIRST
+//					name 'ndktest-plugin'
+//					description 'Compile and run ndk C++ tests on Android devices'
+//					url projectUrl
+//					scm {
+//						url scmUrl
+//						connection connectionUrl
+//						developerConnection developerConnectionUrl
+//					}
+//					licenses {
+//						license {
+//							name 'The Apache Software License, Version 2.0'
+//							url 'http://www.apache.org/license/LICENSE-2.0.txt'
+//							distribution 'repo'
+//						}
+//					}
+//					developers {
+//						developer {
+//							id 'your id or nick name'
+//							name 'Your Name'
+//							email 'your@mail.address'
+//						}
+//					}
+//				}
+//			}
+		}
+	}
+
+	repositories {
+		mavenLocal()
+	}
+}
+
+configurations {
+	provided
+}
+
+sourceSets {
+	main {
+		compileClasspath += configurations.provided
+	}
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+	// We use the latest groovy 2.x version for building this library
+	compile gradleApi()
+	compile 'com.android.tools.build:gradle:1.3.1'
+
+	testCompile 'junit:junit:4.12'
+	testCompile 'com.android.tools.build:gradle-experimental:0.2.0'
+}
