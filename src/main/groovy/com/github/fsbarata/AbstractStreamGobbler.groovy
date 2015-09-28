@@ -1,4 +1,4 @@
-package me.barata.gradle
+package com.github.fsbarata
 
 abstract class AbstractStreamGobbler extends Thread {
 	private final InputStream is;

@@ -19,11 +19,11 @@ buildscript {
     }
 
     dependencies {
-        classpath 'me.barata.gradle:ndktest-plugin:1.0.0'
+        classpath 'com.github.fsbarata:ndktest-gradle-plugin:1.0.0
     }
 }
 
-apply plugin: 'me.barata.ndktest'
+apply plugin: 'com.github.fsbarata.ndktest'
 ```
 
 This will add multiple tasks to your project:

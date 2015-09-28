@@ -1,6 +1,4 @@
-package me.barata.gradle
-
-import com.android.annotations.Nullable
+package com.github.fsbarata
 
 public class TestNdkOptions {
 	String cFlags;

@@ -1,4 +1,4 @@
-package me.barata.gradle
+package com.github.fsbarata
 
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.logging.Logger

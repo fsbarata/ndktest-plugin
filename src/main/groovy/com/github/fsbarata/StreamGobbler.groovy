@@ -1,4 +1,4 @@
-package me.barata.gradle
+package com.github.fsbarata
 
 class StreamGobbler extends AbstractStreamGobbler {
 	private final String type;

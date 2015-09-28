@@ -1,4 +1,4 @@
-package me.barata.gradle
+package com.github.fsbarata
 
 import com.android.annotations.NonNull
 import com.android.build.gradle.AppExtension
@@ -19,7 +19,7 @@ import org.gradle.api.tasks.util.PatternSet
 
 import static com.android.SdkConstants.CURRENT_PLATFORM
 import static com.android.SdkConstants.PLATFORM_WINDOWS
-import static me.barata.gradle.CommandHelper.runWithLogger
+import static com.github.fsbarata.CommandHelper.runWithLogger
 
 class NdkTestCompileTask extends DefaultTask {
 	TestNdkOptions testNdkOptions;

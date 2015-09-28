@@ -1,4 +1,4 @@
-package me.barata.gradle
+package com.github.fsbarata
 
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.api.ApplicationVariant

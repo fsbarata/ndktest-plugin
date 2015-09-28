@@ -1,10 +1,7 @@
-package me.barata.gradle
+package com.github.fsbarata
 
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.testfixtures.ProjectBuilder
-import org.junit.Assert
 import org.junit.Test
 
 class NdkTestPluginTest {
@@ -18,7 +15,7 @@ class NdkTestPluginTest {
 			}
 
 			dependencies {
-				classpath 'me.barata:ndktest-gradle:1.0.0'
+				classpath 'com.github:ndktest-fsbarata:1.0.0'
 				classpath 'com.android.tools.build:gradle-experimental:0.2.0'
 			}
 		}
@@ -35,7 +32,7 @@ class NdkTestPluginTest {
 				buildToolsVersion = "23.0.1"
 
 				defaultConfig.with {
-					applicationId = "me.barata.ndktest.app"
+					applicationId = "com.github.ndktest.app"
 					minSdkVersion.apiLevel = 14
 					targetSdkVersion.apiLevel = 23
 				}
@@ -59,7 +56,7 @@ class NdkTestPluginTest {
 				create("paid") {
 				}
 				create("free") {
-					applicationId = "me.barata.ndktest.freeapp"
+					applicationId = "com.github.ndktest.freeapp"
 				}
 			}
 
@@ -82,7 +79,7 @@ class NdkTestPluginTest {
 			}
 		}
 
-		project.pluginManager.apply 'me.barata.ndktest'
+		project.pluginManager.apply 'com.github.ndktest'
 
 		return project;
 	}

@@ -15,7 +15,7 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-group = 'me.barata.gradle'
+group = 'com.github.fsbarata'
 version = '1.0.0'
 
 repositories {
@@ -26,8 +26,8 @@ repositories {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			groupId 'me.barata.gradle'
-			artifactId 'ndktest-plugin'
+			groupId 'com.github.fsbarata'
+			artifactId 'ndktest-gradle-plugin'
 			version '1.0.0'
 			from components.java
 

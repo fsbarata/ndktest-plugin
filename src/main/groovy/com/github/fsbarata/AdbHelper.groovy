@@ -1,6 +1,6 @@
-package me.barata.gradle
+package com.github.fsbarata
 
-import static me.barata.gradle.CommandHelper.runWithOutput
+import static com.github.fsbarata.CommandHelper.runWithOutput
 
 public class AdbHelper {
 	public static enum Architecture {

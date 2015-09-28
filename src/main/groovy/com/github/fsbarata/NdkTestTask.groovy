@@ -1,12 +1,12 @@
-package me.barata.gradle
+package com.github.fsbarata
 
 import com.android.build.gradle.AppExtension
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.*
 
-import static me.barata.gradle.AdbHelper.*
-import static me.barata.gradle.CommandHelper.*
+import static com.github.fsbarata.AdbHelper.*
+import static com.github.fsbarata.CommandHelper.*
 
 public class NdkTestTask extends DefaultTask implements VerificationTask {
 	private static final String DEVICE_TEMP_FOLDER = '/data/local/tmp/';
