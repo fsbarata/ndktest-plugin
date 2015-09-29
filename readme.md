@@ -1,7 +1,5 @@
 # NDK Test Gradle Plugin #
 
-NOT UPLOADED TO REPOSITORY YET
-
 ### Description ###
 
 Build NDK Googletest based C++ tests with gradle and run them on an Android device. Can be used in Android studio.
@@ -15,7 +13,9 @@ Simply apply the plugin and you're ready to go.
 ```java
 buildscript {
     repositories {
-        mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/groups/public/"
+        }
     }
 
     dependencies {

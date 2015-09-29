@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
@@ -23,41 +24,84 @@ repositories {
 	mavenCentral()
 }
 
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives jar
+	archives javadocJar
+	archives sourcesJar
+}
+
+signing {
+	sign configurations.archives
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+			pom.artifactId = 'ndktest-gradle-plugin'
+
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+				authentication(
+						userName: ossusername,
+						password: osspassword
+				)
+			}
+
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+				authentication(
+						userName: ossusername,
+						password: osspassword
+				)
+			}
+
+			pom.project {
+				packaging 'jar'
+				name 'ndktest-gradle-plugin'
+				description 'Run ndk C++ tests on Android devices'
+				url 'https://github.com/fsbarata/ndktest-plugin'
+				scm {
+					url 'https://github.com/fsbarata/ndktest-plugin'
+					connection 'scm:git:git://github.com/fsbarata/ndktest-plugin.git'
+					developerConnection 'scm:git:git@github.com:fsbarata/ndktest-plugin.git'
+				}
+				licenses {
+					license {
+						name 'The Apache Software License, Version 2.0'
+						url 'http://www.apache.org/license/LICENSE-2.0.txt'
+					}
+				}
+				developers {
+					developer {
+						id 'fsbarata'
+						name 'Fabio Barata'
+						email 'refrainstudios@gmail.com'
+						url 'https://github.com/fsbarata'
+					}
+				}
+			}
+		}
+	}
+}
+
+
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
 			groupId 'com.github.fsbarata'
-			artifactId 'ndktest-gradle-plugin'
+			artifactId 'ndktest-plugin'
 			version '1.0.0'
 			from components.java
-
-			pom.withXml {
-				asNode().children().last() + {
-					resolveStrategy = Closure.DELEGATE_FIRST
-					name 'ndktest-plugin'
-					description 'Run ndk C++ tests on Android devices'
-					url 'https://github.com/fsbarata/ndktest-plugin'
-					scm {
-						url 'https://github.com/fsbarata/ndktest-plugin'
-						connection 'scm:git:git://github.com/fsbarata/ndktest-plugin.git'
-						developerConnection 'scm:git:git@github.com:fsbarata/ndktest-plugin.git'
-					}
-					licenses {
-						license {
-							name 'The Apache Software License, Version 2.0'
-							url 'http://www.apache.org/license/LICENSE-2.0.txt'
-						}
-					}
-					developers {
-						developer {
-							id 'fsbarata'
-							name 'Fabio Barata'
-							email 'refrainstudios@gmail.com'
-							url 'https://github.com/fsbarata'
-						}
-					}
-				}
-			}
 		}
 	}
 }
@@ -76,7 +120,7 @@ sourceSets {
 dependencies {
 	// We use the latest groovy 2.x version for building this library
 	compile gradleApi()
-	compile 'com.android.tools.build:gradle:1.3.1'
+	provided 'com.android.tools.build:gradle:1.3.1'
 
 	testCompile 'junit:junit:4.12'
 	testCompile 'com.android.tools.build:gradle-experimental:0.2.0'
