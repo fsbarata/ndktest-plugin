@@ -56,8 +56,9 @@ ndktest {
 
 ### Known issues ###
 1. Currently not compatible with gradle experimental plugin
-2. Cannot debug on device using Android studio (some code is in place but I was unable to fix the gdb server)
-3. Does not support multiple devices
+2. Does not run as a testing task
+3. Cannot debug on device using Android studio (some code is in place but I was unable to fix the gdb server)
+4. Does not support multiple devices
 
 ### Suggestions ###
 1. Use abi filters to avoid compiling every architecture every time. Use the architecture of the device under test.
