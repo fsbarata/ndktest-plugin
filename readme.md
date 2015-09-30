@@ -13,9 +13,7 @@ Simply apply the plugin and you're ready to go.
 ```java
 buildscript {
     repositories {
-        maven {
-            url "https://oss.sonatype.org/content/groups/public/"
-        }
+        mavenCentral()
     }
 
     dependencies {
